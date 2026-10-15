@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Module>
+	<Name value="MachineBow"/>
+	<Id value="MachineBow"/>
+	<Version value="v1.0.0"/>
+	<SingleplayerModule value="true"/>
+	<DependedModules>
+		<DependedModule Id="Native" DependentVersion="v1.5.5" Optional="false"/>
+		<DependedModule Id="SandBoxCore" DependentVersion="v1.5.5" Optional="false"/>
+		<DependedModule Id="Sandbox" DependentVersion="v1.5.5" Optional="false"/>
+		<DependedModule Id="StoryMode" DependentVersion="v1.5.5" Optional="false"/>
+	</DependedModules>
+	<SubModules>
+		<SubModule>
+			<Name value="MachineBowSubModule"/>
+			<DLLName value="MachineBow.dll"/>
+			<SubModuleClassType value="AutoBow.AutoBowSubModule"/>
+			<Tags>
+				<Tag key="DedicatedServerType" value="none"/>
+				<Tag key="IsNoRenderModeElement" value="false"/>
+			</Tags>
+		</SubModule>
+	</SubModules>
+	<Xmls>
+		<XmlNode>
+			<XmlName id="Items" path="auto_bow_items"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+				<GameType value="CustomGame"/>
+			</IncludedGameTypes>
+		</XmlNode>
+	</Xmls>
+</Module>

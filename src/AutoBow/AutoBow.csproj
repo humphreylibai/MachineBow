@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ============================================================
+     AutoBow 项目文件
+     编译后会生成 AutoBow.dll，需要复制到：
+     Modules/AutoBow/bin/Win64_Shipping_Client/AutoBow.dll
+     ============================================================ -->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>MachineBow</AssemblyName>
+    <RootNamespace>AutoBow</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <Configuration>Release</Configuration>
+    <Platform>AnyCPU</Platform>
+    <AssemblyTitle>MachineBow</AssemblyTitle>
+    <Version>1.0.0</Version>
+    <Company>MachineBow Mod</Company>
+  </PropertyGroup>
+
+  <!-- 游戏目录（从此 .csproj 所在的 src/AutoBow 到游戏 bin 的相对路径）
+       .csproj 位于 Modules/AutoBow/src/AutoBow/
+       需要回到游戏根目录：../../../.. 然后进入 bin/Win64_Shipping_Client -->
+  <PropertyGroup>
+    <GameBinDir>..\..\..\..\bin\Win64_Shipping_Client</GameBinDir>
+  </PropertyGroup>
+
+  <!-- 引用游戏 DLL -->
+  <ItemGroup>
+    <Reference Include="TaleWorlds.MountAndBlade">
+      <HintPath>$(GameBinDir)\TaleWorlds.MountAndBlade.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Core">
+      <HintPath>$(GameBinDir)\TaleWorlds.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Library">
+      <HintPath>$(GameBinDir)\TaleWorlds.Library.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Engine">
+      <HintPath>$(GameBinDir)\TaleWorlds.Engine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.InputSystem">
+      <HintPath>$(GameBinDir)\TaleWorlds.InputSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.DotNet">
+      <HintPath>$(GameBinDir)\TaleWorlds.DotNet.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.ObjectSystem">
+      <HintPath>$(GameBinDir)\TaleWorlds.ObjectSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.ModuleManager">
+      <HintPath>$(GameBinDir)\TaleWorlds.ModuleManager.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- 不引用 Lib.Harmony，避免 AutoBow.dll 引用 0Harmony.dll
+       导致启动器 DLL 验证失败。
+       无下坠功能改由 AutoBowMissionBehavior 每帧修正导弹速度实现。 -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- 编译后自动复制 DLL 到 Mod 的 bin 目录
+       .csproj 位于 Modules/AutoBow/src/AutoBow/
+       编译输出在 bin/$(Configuration)/net472/，需要复制到 Modules/AutoBow/bin/Win64_Shipping_Client/ -->
+  <Target Name="CopyToModBin" AfterTargets="Build">
+    <Copy SourceFiles="$(TargetPath)"
+          DestinationFolder="..\..\bin\Win64_Shipping_Client\" />
+  </Target>
+
+</Project>

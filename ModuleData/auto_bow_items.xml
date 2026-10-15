@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ============================================================
+     AutoBow 模块 - 武器定义
+     定义一把"机关连弩"和配套弩箭
+     武器 ID 必须与 C# 代码中 AutoBowConfig.AutoBowItemId 一致
+
+     改为轻弩(Crossbow/LightCrossbow)：
+     - 轻弩 item_usage="crossbow_light"，可在马背上装填
+     - 左键射击/装填，不进入弓的拉弓瞄准模式
+     - 不需要在运行时清除 MovementFlags
+     ============================================================ -->
+<Items>
+	<!-- ============ 机关连弩（主武器，轻弩类型） ============ -->
+	<!-- 使用轻弩模型，确保装填动画和准星正常工作 -->
+	<Item
+		id="auto_bow_machine_bow"
+		name="机关连弩"
+		body_name="bo_cross_bow_heavy"
+		mesh="crossbow_a"
+		culture="Culture.battania"
+		value="10000"
+		is_merchandise="true"
+		weight="2.5"
+		difficulty="0"
+		appearance="1.0"
+		Type="Crossbow"
+		AmmoOffset="0.0, 0.02131, 0.24650"
+		item_holsters="crossbow_back:bow_hip:mace_right_hip:bow_hip_2"
+		holster_position_shift="0.02,0,-0.4">
+		<ItemComponent>
+			<Weapon
+				weapon_class="Crossbow"
+				ammo_class="Bolt"
+				missile_speed="300"
+				accuracy="100"
+				thrust_damage="60"
+				thrust_speed="200"
+				speed_rating="200"
+				weapon_length="95"
+				ammo_limit="500"
+				thrust_damage_type="Pierce"
+				item_usage="crossbow_light"
+				reload_phase_count="2"
+				physics_material="wood_weapon"
+				center_of_mass="0,0,0.4"
+				modifier_group="crossbow">
+				<WeaponFlags
+					RangedWeapon="true"
+					HasString="true"
+					NotUsableWithOneHand="true"
+					TwoHandIdleOnMount="true"
+					CanBeUsedWhileCrouched="true" />
+			</Weapon>
+		</ItemComponent>
+		<Flags Stealth="true" />
+	</Item>
+
+	<!-- ============ 机关弩箭（大容量箭袋） ============ -->
+	<!-- 复用普通弩箭模型，stack_amount 提升到 500，重量最小化 -->
+	<Item
+		id="auto_bow_machine_arrow"
+		name="机关弩箭"
+		body_name="bo_capsule_arrow"
+		holster_body_name="bo_axe_short"
+		mesh="bolt_bl_c"
+		value="100"
+		is_merchandise="true"
+		culture="Culture.battania"
+		weight="0.01"
+		appearance="1.0"
+		flying_mesh="bolt_bl_flying"
+		holster_mesh="bolt_bl_c_quiver"
+		holster_mesh_with_weapon="bolt_bl_c_quiver"
+		Type="Bolts"
+		item_holsters="quiver_bolts:quiver_bolts_2:quiver_back_middle:quiver_back_top">
+		<ItemComponent>
+			<Weapon
+				weapon_class="Bolt"
+				stack_amount="500"
+				thrust_speed="0"
+				speed_rating="0"
+				physics_material="burning_ballista"
+				missile_speed="10"
+				weapon_length="95"
+				thrust_damage="500"
+				fire_damage="200"
+				thrust_damage_type="Pierce"
+				item_usage=""
+				flying_sound_code="event:/mission/combat/missile/foley/passby"
+				trail_particle_name="psys_game_missile_flame"
+				rotation="180, 0, 0"
+				sticking_position="0,-0.37,0"
+				sticking_rotation="90,0,0"
+				center_of_mass="0,0,-0.3"
+				modifier_group="bolt">
+				<WeaponFlags
+					AttachAmmoToVisual="true"
+					Consumable="true"
+					Burning="true"
+					LeavesTrail="true"
+					AmmoSticksWhenShot="true"
+					MultiplePenetration="true"
+					CanPenetrateShield="true" />
+			</Weapon>
+		</ItemComponent>
+		<Flags ForceAttachOffHandPrimaryItemBone="true" />
+	</Item>
+</Items>
