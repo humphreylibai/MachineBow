@@ -1,5 +1,7 @@
 # MachineBow
 
+[中文说明](README.zh.md) | English
+
 A Mount & Blade II: Bannerlord (v1.5.5) mod that adds a "machine crossbow" — a full-auto crossbow with rapid fire, high-velocity penetrating bolts, aim zoom, and an explosive bolt effect.
 
 ## Features
@@ -14,6 +16,26 @@ A Mount & Blade II: Bannerlord (v1.5.5) mod that adds a "machine crossbow" — a
 - **No Harmony dependency**: Pure `MissionBehavior` via reflection.
 
 ## Install
+
+### Option A: Download the release (recommended)
+
+1. Go to the [Releases page](https://github.com/humphreylibai/MachineBow/releases/latest).
+2. Download `MachineBow.zip` from the latest release.
+3. Extract the zip into your `Mount & Blade II Bannerlord/Modules/` folder. The zip contains a top-level `MachineBow/` folder, so after extraction you should have `Modules/MachineBow/SubModule.xml`, `Modules/MachineBow/ModuleData/...`, and `Modules/MachineBow/bin/Win64_Shipping_Client/MachineBow.dll`.
+4. Launch the game, enable **MachineBow** in the launcher.
+5. (Cheat mode) Use the inventory cheat menu to obtain the "机关连弩" (Machine Crossbow) and "机关弩箭" (Machine Bolts).
+
+### Option B: Build from source
+
+1. Clone this repo.
+2. Build with `dotnet build -c Release` in `src/AutoBow/` (see [Build](#build) below).
+3. Copy the resulting `MachineBow` folder (with `SubModule.xml`, `ModuleData/`, and `bin/Win64_Shipping_Client/MachineBow.dll`) into `Mount & Blade II Bannerlord/Modules/`.
+4. Launch the game, enable **MachineBow** in the launcher.
+5. (Cheat mode) Use the inventory cheat menu to obtain the "机关连弩" and "机关弩箭".
+
+### Option C: Copy an existing install
+
+If you already have the mod files:
 
 1. Copy the `MachineBow` folder into `Mount & Blade II Bannerlord/Modules/`.
 2. Launch the game, enable the module in the launcher.
